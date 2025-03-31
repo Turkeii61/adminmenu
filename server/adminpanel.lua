@@ -53,6 +53,8 @@ Citizen.CreateThread(function()
     end
 end)
 
+
+TESTEAADASDATTSD
 local freezedPlayers = {}
 
 RegisterServerEvent("adminpanel:player:send:action:server")

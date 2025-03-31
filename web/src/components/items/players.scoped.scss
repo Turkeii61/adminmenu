@@ -1,0 +1,98 @@
+.playersContainer {
+    position: absolute;
+    width: 157.2222vmin;
+    height: 76.0185vmin;
+    left: 0vmin;
+    top: 0vmin;
+
+    // background: #0B0A08;
+}
+
+.title {
+    position: absolute;
+    width: 7.963vmin;
+    height: 2.8704vmin;
+    top: 0.6481vmin;
+    left: 1.4815vmin;
+}
+
+.servername {
+    position: absolute;
+    width: 20vmin;
+    height: 1.6667vmin;
+    left: 0vmin;
+
+    font-family: 'Gilroy-ExtraBoldItalic';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 1.3889vmin;
+    line-height: 1.6667vmin;
+
+    color: #FFFFFF;
+
+    text-shadow: 0vmin 0.1852vmin 0.1389vmin rgba(0, 0, 0, 0.6);
+}
+
+.players {
+    position: absolute;
+    width: 7.7778vmin;
+    height: 1.2037vmin;
+    top: 1.6667vmin;
+    left: 0vmin;
+
+    font-family: 'Gilroy-Medium';
+    font-size: 1.0185vmin;
+    line-height: 1.2037vmin;
+
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.playersList {
+    overflow: auto;
+    position: absolute;
+    width: 153.5185vmin;
+    height: 67.2222vmin;
+    left: 1.6667vmin;
+    top: 5.6481vmin;
+}
+
+/*        CSS FÜR DAS SPIELER MODAL         */
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: rgba(217, 217, 217, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-width: 300px;
+    border: 0.0926vmin solid rgba(255, 255, 255, 0.25);
+    font-family: 'Roboto';
+}
+
+
+.popup button {
+    display: block;
+    padding: 10px 20px;
+    background: rgba(217, 217, 217, 0.05);
+    border: 0.0926vmin solid rgba(255, 255, 255, 0.25);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 auto; 
+    margin-top: 10px; 
+    width: 200px;
+}
+

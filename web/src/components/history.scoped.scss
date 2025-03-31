@@ -1,0 +1,68 @@
+.historyItem {
+    padding: 1.3889vmin;
+    position: relative;
+    width: 29.2694vmin;
+    max-height: 27.7778vmin;
+    margin-bottom: 0.5556vmin;
+
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.305) 0%, rgba(72, 0, 101, 0) 98.63%);
+    border-radius: 0.5556vmin;
+
+    .asdasd {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        height: 3.7963vmin;
+        width: 0.0926vmin;
+        top: 50%;
+        left: 0vmin;
+        transform: translateY(-50%);
+
+        background: #bb00ff;
+        box-shadow: 0vmin 0vmin 1.8519vmin #bb00ff;
+        border-radius: 0.1852vmin;
+    }
+
+    .icon {
+        width: 2.4074vmin;
+        height: 2.4074vmin;
+
+        background: #bb00ff;
+        box-shadow: 0vmin 0vmin 0.3889vmin rgba(144, 0, 255, 0.54);
+        border-radius: 0.1852vmin;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+            width: 1.4815vmin;
+            height: 1.4815vmin;
+        }
+    }
+
+    .name {
+        margin-left: 1.0185vmin;
+
+        font-family: 'Gilroy-SemiBold';
+        font-size: 1.6667vmin;
+        line-height: 1.9444vmin;
+
+        color: #FFFFFF;
+    }
+
+    .message {
+        position: relative;
+        top: 0.463vmin;
+        font-family: 'Gilroy-SemiBold';
+        font-size: 1.2963vmin;
+        line-height: 1.5741vmin;
+
+        color: rgba(255, 255, 255, 0.7);
+    }
+}

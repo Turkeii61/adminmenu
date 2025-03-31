@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&display=swap');
+@font-face {
+    font-family: "Gilroy-ExtraBoldItalic";
+    src: url("fonts/Gilroy-ExtraBoldItalic.ttf");
+}
+
+@font-face {
+    font-family: "Gilroy-ExtraBold";
+    src: url("fonts/Gilroy-ExtraBold.otf");
+}
+
+@font-face {
+    font-family: "Gilroy-SemiBoldItalic";
+    src: url("fonts/Gilroy-SemiboldItalic.ttf");
+}
+
+@font-face {
+    font-family: "Gilroy-Medium";
+    src: url('fonts/Gilroy-Medium.ttf');
+}
+
+@font-face {
+    font-family: "Gilroy-MediumItalic";
+    src: url('fonts/Gilroy-MediumItalic.ttf');
+}
+
+@font-face {
+    font-family: "Gilroy-SemiBold";
+    src: url('fonts/Gilroy-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: "Gilroy-Light";
+    src: url('fonts/Gilroy-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Akrobat Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/Akrobat-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Akrobat Light';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/Akrobat-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Akrobat ExtraLight';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/Akrobat-ExtraLight.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Akrobat SemiBold';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/Akrobat-SemiBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Akrobat Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/Akrobat-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Akrobat ExtraBold Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/akrobat-extrabold-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Akrobat Black';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/Akrobat-Black.woff') format('woff');
+}

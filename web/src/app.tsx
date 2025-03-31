@@ -1,13 +1,12 @@
 import './styles/index.scss';
 import './styles/transitions.scss';
-import Adminpanel from './uis/adminpanel/Adminpanel';
+import Adminpanel from './components/Adminpanel';
 
 function App() {
-    return (
-        <div>
-            <Adminpanel />
-        </div>
-    );
+  return (
+    <div className="App">
+      <Adminpanel />
+    </div>
+  );
 }
-
 export default App;

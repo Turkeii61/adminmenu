@@ -1,7 +1,7 @@
 wave = {}
 wave.__index = wave
 
-function revolution: hasPermissions(group, permission)
+function final: hasPermissions(group, permission)
     if ADMINPANEL.Permissions[permission] then
         for k, v in pairs(ADMINPANEL.Permissions[permission]) do
             if (v == group) then
@@ -11,11 +11,11 @@ function revolution: hasPermissions(group, permission)
         return false
     end
 end
-function revolution: generatePlate()
+function final: generatePlate()
     local plate = math.random(100000, 999999)
     return string.format("%06d", plate)
 end
-function revolution: sendLog(xPlayer, action, msg, level)
+function final: sendLog(xPlayer, action, msg, level)
     if type(msg) == "table" then
         msg = json.encode(msg)
     end
@@ -56,13 +56,13 @@ wave.registerCommand = function(name, handler)
     RegisterCommand(name, function(src, args)
         local xPlayer = ESX.GetPlayerFromId(src)
 
-        if not revolution: hasPermissions(xPlayer.group, name) then
+        if not final: hasPermissions(xPlayer.group, name) then
             SV_Notify(src, 'error', 'Keine Rechte.', 5000)
             return
         end
 
         handler(xPlayer, args)
-        revolution: sendLog(xPlayer, name, args)
+        final: sendLog(xPlayer, name, args)
     end, false)
 end
 

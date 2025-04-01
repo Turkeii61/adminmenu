@@ -1,7 +1,7 @@
 wave = {}
 wave.__index = wave
 
-function revolution: hasPermissions(group, permission)
+function final: hasPermissions(group, permission)
     if ADMINPANEL.Permissions[permission] then
         for k, v in pairs(ADMINPANEL.Permissions[permission]) do
             if (v == group) then
@@ -12,7 +12,7 @@ function revolution: hasPermissions(group, permission)
     end
 end
 
-function revolution: setAduty(group)
+function final: setAduty(group)
     local playerPed = PlayerPedId()
     TriggerEvent('skinchanger:getSkin', function(skin)
         if skin.sex == 1 then
@@ -22,14 +22,14 @@ function revolution: setAduty(group)
         Wait(100)
         TriggerEvent("skinchanger:loadClothes", skin, ADMINPANEL.Aduties[group])
     end)
-    revolution: sendLog("In Aduty gegangen", 'aduty')
+    final: sendLog("In Aduty gegangen", 'aduty')
 end
 
-function revolution: sendLog(msg, action)
+function final: sendLog(msg, action)
     TriggerServerEvent("ms:sendLog", msg, action)
 end
 
-function revolution: getJobFromID(id)
+function final: getJobFromID(id)
     for k,v in pairs(panelData.players) do
         if tostring(v.id) == tostring(id) then
             return v.job
@@ -37,7 +37,7 @@ function revolution: getJobFromID(id)
     end
 end
 
-function revolution: noClip(state)
+function final: noClip(state)
     if state then
         SetPlayerControl(PlayerId(), 0, 0)
         SetPlayerCanControl(PlayerId(), false)
@@ -69,7 +69,7 @@ ENABLE_TOGGLE_NO_CLIP = false
 ENABLE_NO_CLIP_SOUND = true
 local noClippingEntity = PlayerPedId();
 
-function revolution: noClip(state)
+function final: noClip(state)
     return SetNoClip(status)
 end
 
@@ -279,7 +279,7 @@ local function showGamerTags()
 
         if not playerGamerTags[pid] or not IsMpGamerTagActive(playerGamerTags[pid].gamerTag) then
             local playerName = string.sub(GetPlayerName(pid) or "unknown", 1, 75)
-            local playerStr = ("[%s] %s %s"):format(GetPlayerServerId(pid), revolution: getJobFromID(GetPlayerServerId(pid)), playerName)
+            local playerStr = ("[%s] %s %s"):format(GetPlayerServerId(pid), final: getJobFromID(GetPlayerServerId(pid)), playerName)
             playerGamerTags[pid] = {
                 gamerTag = CreateFakeMpGamerTag(targetPed, playerStr, false, false, "", 0),
                 SetMpGamerTagHealthBarColor(gamerTag, 129),
@@ -315,7 +315,7 @@ local function createGamerTagThread()
     end)
 end
 
-function revolution: toggleNametags(enabled)
+function final: toggleNametags(enabled)
     if enabled then
         createGamerTagThread()
     end
@@ -447,8 +447,8 @@ function fulltune(veh)
     SetVehicleWindowTint(veh, 1)
 end
 
-RegisterNetEvent("revolution: freeze")
-AddEventHandler("revolution: freeze", function(state)
+RegisterNetEvent("final: freeze")
+AddEventHandler("final: freeze", function(state)
     print(state)
     panelData.states.freezed = state
     if not state then
@@ -561,8 +561,8 @@ RegisterNetEvent("ms:commands:blackscreen", function()
     DoScreenFadeIn(0)
 end)
 
-RegisterNetEvent("revolution: heal")
-AddEventHandler("revolution: heal", function()
+RegisterNetEvent("final: heal")
+AddEventHandler("final: heal", function()
     local playerPed = PlayerPedId()
     local maxHealth = GetEntityMaxHealth(playerPed)
 
@@ -571,7 +571,7 @@ AddEventHandler("revolution: heal", function()
     end
 end)
 
-function revolution: openDialog(title, callback)
+function final: openDialog(title, callback)
     SetNuiFocus(false, false)
     AddTextEntry('FMMC_KEY_TIP8', title)
     DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8", "", "", "", "", "", 128)

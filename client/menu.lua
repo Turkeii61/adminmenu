@@ -371,7 +371,7 @@ local menu = {
     },
 }
 
-function revolution: openAdminPanel()
+function final: openAdminPanel()
     SendNUIMessage({
         action = 'toggleAdminpanel',
         data = { state = true }

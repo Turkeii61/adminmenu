@@ -22,14 +22,14 @@ RegisterCommand('adminpanel', function()
         ESX.TriggerServerCallback('ms:getGroup', function(group)
             panelData.group = group.group
             panelData.serverName = group.serverName
-            if revolution: hasPermissions(group.group, "openMenu") then
-                revolution: openAdminPanel()
+            if final: hasPermissions(group.group, "openMenu") then
+                final: openAdminPanel()
                 return;
             end
         end)
     else
-        if revolution: hasPermissions(panelData.group, "openMenu") then
-            revolution: openAdminPanel()
+        if final: hasPermissions(panelData.group, "openMenu") then
+            final: openAdminPanel()
             return;
         end
     end
@@ -119,10 +119,10 @@ RegisterNuiCallback('onChange', function(data, cb)
                         panelData.states.godmode = v1.checked
                         if (v1.checked) then
                             CL_Notify('success', "Du bist nun im Aduty.", 5000)
-                            revolution: setAduty(panelData.group)
+                            final: setAduty(panelData.group)
                         else
                             CL_Notify('error', "Du bist nun nicht mehr im Aduty.", 5000)
-                            revolution: sendLog("Adminmenu: Admin-Modus beendet", 'aduty')
+                            final: sendLog("Adminmenu: Admin-Modus beendet", 'aduty')
                             ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
                                 TriggerEvent('skinchanger:loadSkin', skin)
                             end)
@@ -131,8 +131,8 @@ RegisterNuiCallback('onChange', function(data, cb)
                     if (v1.label == 'NoClip') then
                         v1.checked = not v1.checked
                         panelData.states.noclip = v1.checked
-                        revolution: noClip(v1.checked)
-                        revolution: sendLog("NoClip " .. (v1.checked and "aktiviert" or "deaktiviert"), 'noclip')
+                        final: noClip(v1.checked)
+                        final: sendLog("NoClip " .. (v1.checked and "aktiviert" or "deaktiviert"), 'noclip')
                     end
 
                     if (v1.label == 'Godmode') then
@@ -143,19 +143,19 @@ RegisterNuiCallback('onChange', function(data, cb)
                         else
                             CL_Notify('error', "Du bist nicht mehr im Godmode.", 5000)
                         end
-                        revolution: sendLog("Godmode " .. (v1.checked and "aktiviert" or "deaktiviert"), 'godmode')
+                        final: sendLog("Godmode " .. (v1.checked and "aktiviert" or "deaktiviert"), 'godmode')
                     end
 
                     if (v1.label == 'Nametags') then
                         v1.checked = not v1.checked
                         panelData.states.nametags = v1.checked
-                        revolution: toggleNametags(v1.checked)
+                        final: toggleNametags(v1.checked)
                         if v1.checked then
                             CL_Notify('success', "Du hast Nametags eingeschaltet.", 5000)
                         else
                             CL_Notify('error', "Du hast Nametags ausgeschaltet.", 5000)
                         end
-                        revolution: sendLog("Nametags " .. (v1.checked and "eingeschaltet" or "ausgeschaltet"), 'nametags')
+                        final: sendLog("Nametags " .. (v1.checked and "eingeschaltet" or "ausgeschaltet"), 'nametags')
                     end
 
                     if (v1.label == 'Vanish') then
@@ -167,7 +167,7 @@ RegisterNuiCallback('onChange', function(data, cb)
                         else
                             CL_Notify('error', "Du bist nicht mehr im Vanish.", 5000)
                         end
-                        revolution: sendLog("Vanish " .. (v1.checked and "aktiviert" or "deaktiviert"), 'vanish')
+                        final: sendLog("Vanish " .. (v1.checked and "aktiviert" or "deaktiviert"), 'vanish')
                     end
 
                 end
@@ -184,7 +184,7 @@ RegisterNuiCallback('onClick', function(data, cb)
                 if (v1.id == data.selected) then
                     if (v1.label == 'Boost') then
                         boostVehicle()
-                        revolution: sendLog("Boost aktiviert", 'boost')
+                        final: sendLog("Boost aktiviert", 'boost')
                     end
                     if (v1.label == 'Löschen') then
                         if (not IsPedInAnyVehicle(PlayerPedId(), false)) then
@@ -194,7 +194,7 @@ RegisterNuiCallback('onClick', function(data, cb)
                         SetEntityAsMissionEntity(vehicle, true, true)
                         DeleteVehicle(vehicle)
                         CL_Notify('success', 'Fahrzeug gelöscht', 5000)
-                        revolution: sendLog("Fahrzeug gelöscht", 'deleteVehicle')
+                        final: sendLog("Fahrzeug gelöscht", 'deleteVehicle')
                     end
 
                     if (v1.label == 'Reparieren') then
@@ -207,7 +207,7 @@ RegisterNuiCallback('onClick', function(data, cb)
                         SetVehicleEngineOn(veh, true, false)
                         SetVehicleDirtLevel(veh, 0.0)
                         SetVehicleOnGroundProperly(veh)
-                        revolution: sendLog("Fahrzeug repariert", 'repairVehicle')
+                        final: sendLog("Fahrzeug repariert", 'repairVehicle')
                     end
 
                     if (v1.label == 'Flip') then
@@ -216,7 +216,7 @@ RegisterNuiCallback('onClick', function(data, cb)
                         end
                         local veh = GetVehiclePedIsIn(PlayerPedId(), false)
                         SetVehicleOnGroundProperly(veh)
-                        revolution: sendLog("Fahrzeug geflippt", 'flipVehicle')
+                        final: sendLog("Fahrzeug geflippt", 'flipVehicle')
                     end
 
                     if (v1.label == 'Fulltune') then
@@ -227,26 +227,26 @@ RegisterNuiCallback('onClick', function(data, cb)
                         local veh = GetVehiclePedIsIn(PlayerPedId(), false)
                         fulltune(veh)
                         CL_Notify('success', 'Fahrzeug fulltuned!', 5000)
-                        revolution: sendLog("Fahrzeug fulltuned", 'fullTune')
+                        final: sendLog("Fahrzeug fulltuned", 'fullTune')
                     end
 
                     -- Clear
                     if (v1.label == 'Fahrzeuge löschen') then
                         CL_Notify('success', "Fahrzeuge werden Cleart!", 5000)
                         TriggerServerEvent("adminmenu:cleanArea:server", "cars")
-                        revolution: sendLog("Fahrzeuge gelöscht", 'clearVehicles')
+                        final: sendLog("Fahrzeuge gelöscht", 'clearVehicles')
                     end
 
                     if (v1.label == 'Peds löschen') then
                         CL_Notify('success', "Peds werden Cleart!", 5000)
                         TriggerServerEvent("adminmenu:cleanArea:server", "peds")
-                        revolution: sendLog("Peds gelöscht", 'clearPeds')
+                        final: sendLog("Peds gelöscht", 'clearPeds')
                     end
 
                     if (v1.label == 'Props löschen') then
                         CL_Notify('success', "Props werden Cleart!", 5000)
                         TriggerServerEvent("adminmenu:cleanArea:server", "props")
-                        revolution: sendLog("Props gelöscht", 'clearProps')
+                        final: sendLog("Props gelöscht", 'clearProps')
                     end
 
                     -- Troll
@@ -470,7 +470,7 @@ end)
 
 
 function OpenIDModal2(aktion)
-    revolution: openDialog('Spieler ID Eingeben', function(value)
+    final: openDialog('Spieler ID Eingeben', function(value)
         value = tonumber(value)
         if not value or value <= 0 then
             CL_Notify('error', "Ungültige Eingabe", 5000)
@@ -483,7 +483,7 @@ function OpenIDModal2(aktion)
 end
 
 function OpenIDModal(aktion)
-    revolution: openDialog('Spieler ID Eingeben', function(value)
+    final: openDialog('Spieler ID Eingeben', function(value)
         value = tonumber(value)
         if not value or value <= 0 then
             CL_Notify('error', "Ungültige Eingabe", 5000)
@@ -491,14 +491,14 @@ function OpenIDModal(aktion)
         end
 
         if aktion == "giveitemwave" or aktion == "giveweaponwave" or aktion == "givemoneywave" then
-            revolution: openDialog("Waffe/Item/Geld Eingeben", function(valuee)
+            final: openDialog("Waffe/Item/Geld Eingeben", function(valuee)
                 if valuee == "" or not valuee then
                     CL_Notify('error', "Textfeld darf nicht leer sein", 5000)
                     return
                 end
 
                 if aktion == "giveitemwave" then
-                    revolution: openDialog("Amount Eingeben", function(valueee)
+                    final: openDialog("Amount Eingeben", function(valueee)
                         valueee = tonumber(valueee)
                         if not valueee then
                             CL_Notify('error', "Ungültige Anzahl", 5000)
@@ -513,7 +513,7 @@ function OpenIDModal(aktion)
                 end
             end)
         elseif aktion == "setgroup" then
-            revolution: openDialog('Gruppe Eingeben', function(valuee)
+            final: openDialog('Gruppe Eingeben', function(valuee)
                 valuee = tostring(valuee)
                 if not valuee then
                     CL_Notify('error', "Ungültige Eingabe", 5000)
@@ -523,13 +523,13 @@ function OpenIDModal(aktion)
                 ExecuteCommand("setgroup "..value.." "..valuee)
             end)
         elseif aktion == "setjobwave" then
-            revolution: openDialog('Job Eingeben', function(valuee)
+            final: openDialog('Job Eingeben', function(valuee)
                 valuee = tostring(valuee)
                 if not valuee then
                     CL_Notify('error', "Ungültige Eingabe", 5000)
                     return
                 end
-                revolution: openDialog('Grade Eingeben', function(valueee)
+                final: openDialog('Grade Eingeben', function(valueee)
                     valueee = tonumber(valueee)
                     if not valueee then
                         CL_Notify('error', "Ungültige Eingabe", 5000)
@@ -550,13 +550,13 @@ function OpenIDModal(aktion)
 end
 
 function OpenIDModal3(aktion)
-    revolution: openDialog('Spieler ID Eingeben', function(value)
+    final: openDialog('Spieler ID Eingeben', function(value)
         value = tonumber(value)
         if not value or value <= 0 then
             CL_Notify('error', "Ungültige Eingabe", 5000)
             return
         end
-        revolution: openDialog('Auto Namen Eingeben', function(valuee)
+        final: openDialog('Auto Namen Eingeben', function(valuee)
             if not valuee or valuee == "" then
                 CL_Notify('error', "Ungültige Eingabe", 5000)
                 return
@@ -569,18 +569,18 @@ function OpenIDModal3(aktion)
 end
 
 function OpenIDModal4(aktion)
-    revolution: openDialog('Spieler ID Eingeben', function(value)
+    final: openDialog('Spieler ID Eingeben', function(value)
         value = tonumber(value)
         if not value or value <= 0 then
             CL_Notify('error', "Ungültige Eingabe", 5000)
             return
         end
         if aktion == "setped" then
-            if not revolution: hasPermissions(panelData.group, "setped") then
+            if not final: hasPermissions(panelData.group, "setped") then
                 CL_Notify('error', "Du hast keine Berechtigung, dein Ped zu setzen.")
                 return
             end
-            revolution: openDialog('Ped Eingeben', function(valuee)
+            final: openDialog('Ped Eingeben', function(valuee)
                 valuee = tostring(valuee)
                 if not valuee then
                     CL_Notify('error', "Ungültige Eingabe", 5000)
@@ -593,7 +593,7 @@ function OpenIDModal4(aktion)
 
 
         else
-            revolution: openDialog('Dimension Eingeben', function(valuee)
+            final: openDialog('Dimension Eingeben', function(valuee)
                 valuee = tonumber(valuee)
                 if not valuee then
                     CL_Notify('error', "Ungültige Eingabe", 5000)
@@ -608,14 +608,14 @@ function OpenIDModal4(aktion)
 end
 
 function OpenTextModal(aktion)
-    revolution: openDialog("Text Eingeben", function(value)
+    final: openDialog("Text Eingeben", function(value)
         if not value or value == "" then
             CL_Notify('error', "Textfeld darf nicht leer sein", 5000)
             return
         end
 
         if aktion == "spawnvehicle" then
-            if not revolution: hasPermissions(panelData.group, "spawnvehicle") then
+            if not final: hasPermissions(panelData.group, "spawnvehicle") then
                 CL_Notify('error', "Du hast keine Berechtigung, ein Auto zu spawnen.")
                 return
             end
@@ -633,7 +633,7 @@ function OpenTextModal(aktion)
             CL_Notify('success', "Fahrzeug erfolgreich gespawnt.", 5000)
             SetNuiFocus(true, false)
         elseif aktion == "frakannounce" then
-            revolution: openDialog('Fraktionsname Eingeben', function(valuee)
+            final: openDialog('Fraktionsname Eingeben', function(valuee)
                 valuee = tostring(valuee)
                 if not valuee then
                     CL_Notify('error', "Ungültige Eingabe", 5000)

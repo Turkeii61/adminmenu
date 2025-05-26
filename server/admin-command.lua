@@ -1,7 +1,7 @@
-wave = {}
-wave.__index = wave
+final = {}
+final.__index = final
 
-function final: hasPermissions(group, permission)
+function final:hasPermissions(group, permission)
     if ADMINPANEL.Permissions[permission] then
         for k, v in pairs(ADMINPANEL.Permissions[permission]) do
             if (v == group) then
@@ -11,11 +11,11 @@ function final: hasPermissions(group, permission)
         return false
     end
 end
-function final: generatePlate()
+function final:generatePlate()
     local plate = math.random(100000, 999999)
     return string.format("%06d", plate)
 end
-function final: sendLog(xPlayer, action, msg, level)
+function final:sendLog(xPlayer, action, msg, level)
     if type(msg) == "table" then
         msg = json.encode(msg)
     end
@@ -32,7 +32,7 @@ function final: sendLog(xPlayer, action, msg, level)
                     ["title"] = xPlayer.name .. " hat eine Admin Aktion ausgeführ",
                     ["color"] = "#00ff00",
                     ["footer"] = {
-                        ["text"] = "Wave Scripts | " .. os.date(),
+                        ["text"] = "Final Scripts | " .. os.date(),
                         ["icon_url"] = "https://cdn.discordapp.com/attachments/944789399852417096/1004915039414788116/imageedit_1_2564956129.png"
                     },
                     ["fields"] = {
@@ -52,26 +52,26 @@ function final: sendLog(xPlayer, action, msg, level)
 end
 
 
-wave.registerCommand = function(name, handler)
+Final.registerCommand = function(name, handler)
     RegisterCommand(name, function(src, args)
         local xPlayer = ESX.GetPlayerFromId(src)
 
-        if not final: hasPermissions(xPlayer.group, name) then
+        if not final:hasPermissions(xPlayer.group, name) then
             SV_Notify(src, 'error', 'Keine Rechte.', 5000)
             return
         end
 
         handler(xPlayer, args)
-        final: sendLog(xPlayer, name, args)
+        final:sendLog(xPlayer, name, args)
     end, false)
 end
 
-wave.registerCommand("announce", function(xPlayer, args)
+Final.registerCommand("announce", function(xPlayer, args)
     local argString = table.concat(args, " ")
     announce(-1, argString, 10000)
 end)
 
-wave.registerCommand("teamchat", function(xPlayer, args)
+Final.registerCommand("teamchat", function(xPlayer, args)
     for k,v in pairs(GetPlayers()) do
         local xPlayer = ESX.GetPlayerFromId(v)
         if xPlayer then
@@ -83,7 +83,7 @@ wave.registerCommand("teamchat", function(xPlayer, args)
     end
 end)
 
-wave.registerCommand("setped", function(xPlayer, args)
+Final.registerCommand("setped", function(xPlayer, args)
     local id = tonumber(args[1])
     if id == nil then return end
     local pedModel = tostring(args[2])
@@ -91,13 +91,13 @@ wave.registerCommand("setped", function(xPlayer, args)
     TriggerClientEvent("ms:setPed", id, pedModel)
 end)
 
-wave.registerCommand("resetped", function(xPlayer, args)
+Final.registerCommand("resetped", function(xPlayer, args)
     local id = tonumber(args[1])
     if id == nil then return end
     TriggerClientEvent("ms:setPedSkin", id)
 end)
 
-wave.registerCommand('giveweaponwave', function(xPlayer, args)
+Final.registerCommand('giveweaponFinal', function(xPlayer, args)
     local id = tonumber(args[1])
     if id == nil then return end
     local text = tostring(args[2])
@@ -114,7 +114,7 @@ wave.registerCommand('giveweaponwave', function(xPlayer, args)
         SV_Notify(xPlayer.source, 'error', 'Der Spieler existiert nicht.', 5000)
     end
 end)
-wave.registerCommand('giveitemwave', function(xPlayer, args)
+Final.registerCommand('giveitemFinal', function(xPlayer, args)
     local id = tonumber(args[1])
     if id == nil then return end
     local text = tostring(args[2])
@@ -131,7 +131,7 @@ wave.registerCommand('giveitemwave', function(xPlayer, args)
     end
 end)
 
-wave.registerCommand('reviveallwave', function(xPlayer, args)
+Final.registerCommand('reviveallFinal', function(xPlayer, args)
     for k, v in pairs(ESX.GetPlayers()) do
         local xTarget = ESX.GetPlayerFromId(v)
         if xTarget then
@@ -142,7 +142,7 @@ wave.registerCommand('reviveallwave', function(xPlayer, args)
     SV_Notify(xPlayer.source, 'success', 'Alle Spieler wurden wiederbelebt.', 5000)
 end)
 
-wave.registerCommand('givemoneywave', function(xPlayer, args)
+Final.registerCommand('givemoneyFinal', function(xPlayer, args)
     local id = tonumber(args[1])
     if id == nil then return end
     local text = tonumber(args[2])
@@ -158,37 +158,37 @@ wave.registerCommand('givemoneywave', function(xPlayer, args)
     end
 end)
 
-wave.registerCommand('hochjagen', function(xPlayer, args)
+Final.registerCommand('hochjagen', function(xPlayer, args)
     local id = tonumber(args[1])
     if id == nil then return end
     TriggerClientEvent('ms:commands:hochjagen', id)
 end)
 
-wave.registerCommand('wegrammen', function(xPlayer, args)
+Final.registerCommand('wegrammen', function(xPlayer, args)
     local id = tonumber(args[1])
     if id == nil then return end
     TriggerClientEvent('ms:commands:wegrammen', id)
 end)
 
-wave.registerCommand('aufflasche', function(xPlayer, args)
+Final.registerCommand('aufflasche', function(xPlayer, args)
     local id = tonumber(args[1])
     if id == nil then return end
     TriggerClientEvent('ms:commands:aufFlascheSitzen', id)
 end)
 
-wave.registerCommand('flashbang', function(xPlayer, args)
+Final.registerCommand('flashbang', function(xPlayer, args)
     local id = tonumber(args[1])
     if id == nil then return end
     TriggerClientEvent('ms:commands:flashbang', id)
 end)
 
-wave.registerCommand('blackscreen', function(xPlayer, args)
+Final.registerCommand('blackscreen', function(xPlayer, args)
     local id = tonumber(args[1])
     if id == nil then return end
     TriggerClientEvent('ms:commands:blackscreen', id)
 end)
 
-wave.registerCommand('setgroup', function(xPlayer, args)
+Final.registerCommand('setgroup', function(xPlayer, args)
     local id = tonumber(args[1])
     if id == nil then return end
     local group = tostring(args[2])
@@ -203,7 +203,7 @@ wave.registerCommand('setgroup', function(xPlayer, args)
     end
 end)
 
-wave.registerCommand('giveteammoney', function(xPlayer, args)
+Final.registerCommand('giveteammoney', function(xPlayer, args)
     local money = tonumber(args[1])
     if money == nil then return end
     if money < 0 then return end
@@ -219,7 +219,7 @@ wave.registerCommand('giveteammoney', function(xPlayer, args)
     SV_Notify(xPlayer.source, 'success', 'Erfolgreich.', 5000)
 end)
 
-wave.registerCommand('frakannounce', function(xPlayer, args)
+Final.registerCommand('frakannounce', function(xPlayer, args)
     local job = tostring(args[1])
     if job == nil then return end
     local message = table.concat(args, " ", 2)
@@ -249,7 +249,7 @@ wave.registerCommand('frakannounce', function(xPlayer, args)
     SV_Notify(xPlayer.source, 'success', 'Erfolgreich.', 5000)
 end)
 
-wave.registerCommand('frakaufloesen', function(xPlayer, args)
+Final.registerCommand('frakaufloesen', function(xPlayer, args)
     local job = tostring(args[1])
     if job == nil then return end
 
@@ -277,7 +277,7 @@ wave.registerCommand('frakaufloesen', function(xPlayer, args)
     SV_Notify(xPlayer.source, 'success', 'Erfolgreich.', 5000)
 end)
 
-wave.registerCommand('setjobwave', function(xPlayer, args)
+Final.registerCommand('setjobFinal', function(xPlayer, args)
     local id = tonumber(args[1])
     if id == nil then return end
     local job = tostring(args[2])
@@ -307,7 +307,7 @@ wave.registerCommand('setjobwave', function(xPlayer, args)
     end
 end)
 
-wave.registerCommand('bringfraktion', function(xPlayer, args)
+Final.registerCommand('bringfraktion', function(xPlayer, args)
     local mycoords = GetEntityCoords(GetPlayerPed(xPlayer.source))
     local job = tostring(args[1])
     if job == nil then return end

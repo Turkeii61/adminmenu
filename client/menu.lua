@@ -371,7 +371,7 @@ local menu = {
     },
 }
 
-function final: openAdminPanel()
+function final:openAdminPanel()
     SendNUIMessage({
         action = 'toggleAdminpanel',
         data = { state = true }

@@ -16,7 +16,7 @@ ADMINPANEL = {
             'support',
             'guide',
         },
-        ['setjobwave'] = {
+        ['setjobFinal'] = {
             'projektleitung',
             'management',
             'teamleitung',
@@ -106,7 +106,7 @@ ADMINPANEL = {
             'support',
             'guide',
         },
-        ['reviveallwave'] = {
+        ['reviveallFinal'] = {
             'projektleitung',
             'management',
             'teamleitung',
@@ -151,7 +151,7 @@ ADMINPANEL = {
             'support',
             'guide',
         },
-        ['giveweaponwave'] = {
+        ['giveweaponFinal'] = {
             'projektleitung',
             'management',
             'teamleitung',
@@ -160,7 +160,7 @@ ADMINPANEL = {
             'support',
             'guide',
         },
-        ['giveitemwave'] = {
+        ['giveitemFinal'] = {
             'projektleitung',
             'management',
             'teamleitung',
@@ -169,7 +169,7 @@ ADMINPANEL = {
             'support',
             'guide',
         },
-        ['givemoneywave'] = {
+        ['givemoneyFinal'] = {
             'projektleitung',
             'management',
             'teamleitung',

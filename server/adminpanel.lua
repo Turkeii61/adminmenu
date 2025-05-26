@@ -62,7 +62,7 @@ AddEventHandler("adminpanel:player:send:action:server", function(action, playerI
     local xPlayer = ESX.GetPlayerFromId(source)
     local xTarget = ESX.GetPlayerFromId(playerId)
 
-    if not final: hasPermissions(xPlayer.group, action) then
+    if not final:hasPermissions(xPlayer.group, action) then
         SV_Notify(xPlayer.source, 'error',  "Du hast keine Rechte für diese Aktion!", 5000)
         return
     end
@@ -89,11 +89,11 @@ AddEventHandler("adminpanel:player:send:action:server", function(action, playerI
         elseif action == "freeze" then
             if freezedPlayers[xTarget.source] then
                 freezedPlayers[xTarget.source] = nil
-                TriggerClientEvent("final: freeze", xTarget.source, false)
+                TriggerClientEvent("final:freeze", xTarget.source, false)
                 SV_Notify(xPlayer.source, 'warning',  "entfreezed!", 5000)
             else
                 freezedPlayers[xTarget.source] = true
-                TriggerClientEvent("final: freeze", xTarget.source, true)
+                TriggerClientEvent("final:freeze", xTarget.source, true)
                 SV_Notify(xPlayer.source, 'warning',  "entfreezed!", 5000)
             end
         elseif action == "charreset" then
@@ -107,17 +107,17 @@ AddEventHandler("adminpanel:player:send:action:server", function(action, playerI
             SV_Notify(xTarget.source, 'error',  "Du wurdest in den Support gerufen!", 20000)
             SV_Notify(xTarget.source, 'error',  "Du wurdest in den Support gerufen!", 20000)
             freezedPlayers[xTarget.source] = true
-            TriggerClientEvent("final: freeze", xTarget.source, true)
+            TriggerClientEvent("final:freeze", xTarget.source, true)
             SV_Notify(xPlayer.source, 'success',  "Supportcall gestartet!", 5000)
             Wait(60000 * 5)
             freezedPlayers[xTarget.source] = nil
-            TriggerClientEvent("final: freeze", xTarget.source, false)
+            TriggerClientEvent("final:freeze", xTarget.source, false)
         elseif action == "revive" then
             revivePlayer(xTarget.source);
             SV_Notify(xPlayer.source, 'success',  "Du hast " .. GetPlayerName(playerId) .. " Wiederbelebt!", 5000)
             SV_Notify(xTarget.source, 'success',  "Du wurdest von einem Admin Wiederbelebt!", 5000)
         elseif action == "heal" then
-            TriggerClientEvent("final: heal", xTarget.source)
+            TriggerClientEvent("final:heal", xTarget.source)
             SV_Notify(xPlayer.source, 'success',  "Du hast " .. GetPlayerName(playerId) .. " geheilt!", 5000)
         elseif action == "clearinventory" then
 
@@ -145,15 +145,15 @@ AddEventHandler("adminpanel:player:send:action:server:givecar", function(action,
     local xPlayer = ESX.GetPlayerFromId(source)
     local xTarget = ESX.GetPlayerFromId(playerId)
 
-    if not final: hasPermissions(xPlayer.group, action) then
+    if not final:hasPermissions(xPlayer.group, action) then
         SV_Notify(xPlayer.source, 'error',  "Du hast keine Berechtigung, das Admin-Menü zu öffnen.")
         return
     end
     if xTarget then
         if action == "givevehicle" then
-            givecar(xTarget.getIdentifier(), vehicleName, final: generatePlate())
+            givecar(xTarget.getIdentifier(), vehicleName, final:generatePlate())
             SV_Notify(xPlayer.source, 'success',  "Du hast " .. GetPlayerName(playerId) .. " ein Fahrzeug gegeben!", 5000)
-            final: sendLog(xPlayer, "givevehicle", "Auto gegeben an ".. xTarget.getIdentifier())
+            final:sendLog(xPlayer, "givevehicle", "Auto gegeben an ".. xTarget.getIdentifier())
         end
 
     else
@@ -166,7 +166,7 @@ AddEventHandler("adminpanel:player:send:action:server:dimension", function(actio
     local xPlayer = ESX.GetPlayerFromId(source)
     local xTarget = ESX.GetPlayerFromId(playerId)
 
-    if not final: hasPermissions(xPlayer.group, action) then
+    if not final:hasPermissions(xPlayer.group, action) then
         SV_Notify(xPlayer.source, 'error',  "Du hast keine Berechtigung, das Admin-Menü zu öffnen.")
         return
     end
@@ -199,7 +199,7 @@ AddEventHandler("ms:sendLog", function(msg, action)
                 inNoclip[xPlayer.source] = true
             end
         end
-        final: sendLog(xPlayer, action, msg)
+        final:sendLog(xPlayer, action, msg)
     else
         print("Fehler: Spieler mit der ID: " .. xPlayer.source .. " nicht gefunden.")
     end

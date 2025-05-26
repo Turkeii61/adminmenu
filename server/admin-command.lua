@@ -1,7 +1,7 @@
-final = {}
-final.__index = final
+Final = {}
+Final.__index = Final
 
-function final:hasPermissions(group, permission)
+function Final:hasPermissions(group, permission)
     if ADMINPANEL.Permissions[permission] then
         for k, v in pairs(ADMINPANEL.Permissions[permission]) do
             if (v == group) then
@@ -11,11 +11,11 @@ function final:hasPermissions(group, permission)
         return false
     end
 end
-function final:generatePlate()
+function Final:generatePlate()
     local plate = math.random(100000, 999999)
     return string.format("%06d", plate)
 end
-function final:sendLog(xPlayer, action, msg, level)
+function Final:sendLog(xPlayer, action, msg, level)
     if type(msg) == "table" then
         msg = json.encode(msg)
     end
@@ -32,8 +32,8 @@ function final:sendLog(xPlayer, action, msg, level)
                     ["title"] = xPlayer.name .. " hat eine Admin Aktion ausgeführ",
                     ["color"] = "#00ff00",
                     ["footer"] = {
-                        ["text"] = "Final Scripts | " .. os.date(),
-                        ["icon_url"] = "https://cdn.discordapp.com/attachments/944789399852417096/1004915039414788116/imageedit_1_2564956129.png"
+                        ["text"] = "Final Allstars | " .. os.date(),
+                        ["icon_url"] = "https://cdn.discordapp.com/attachments/1374125909778370611/1374126892961235014/final_logo.gif?ex=682ee525&is=682d93a5&hm=dab4ffc2ac7564b7cd07fde5ef81eaffc3bb50e6b709e67e8e3ebac32e67b936&"
                     },
                     ["fields"] = {
                         {name = "**Aktion**", value = action, inline = true},
@@ -56,13 +56,13 @@ Final.registerCommand = function(name, handler)
     RegisterCommand(name, function(src, args)
         local xPlayer = ESX.GetPlayerFromId(src)
 
-        if not final:hasPermissions(xPlayer.group, name) then
+        if not Final:hasPermissions(xPlayer.group, name) then
             SV_Notify(src, 'error', 'Keine Rechte.', 5000)
             return
         end
 
         handler(xPlayer, args)
-        final:sendLog(xPlayer, name, args)
+        Final:sendLog(xPlayer, name, args)
     end, false)
 end
 

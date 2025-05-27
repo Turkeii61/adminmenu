@@ -1,5 +1,5 @@
-Final = {}
-Final.__index = Final
+final = {}
+final.__index = final
 
 function final:hasPermissions(group, permission)
     if ADMINPANEL.Permissions[permission] then

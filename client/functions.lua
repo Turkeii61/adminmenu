@@ -26,7 +26,7 @@ function final:setAduty(group)
 end
 
 function final:sendLog(msg, action)
-    TriggerServerEvent("ms:sendLog", msg, action)
+    TriggerServerEvent("final:sendLog", msg, action)
 end
 
 function final:getJobFromID(id)
@@ -466,14 +466,14 @@ end)
 
 local globalSize = 1.0
 
-RegisterNetEvent('ms:commands:hochjagen', function()
+RegisterNetEvent('final:commands:hochjagen', function()
     local playerPed = PlayerPedId()
     local coords = GetEntityCoords(playerPed)
 
     AddExplosion(coords.x, coords.y, coords.z, 7, 1.0, true, false, 1.0)
 end)
 
-RegisterNetEvent('ms:commands:wegrammen', function()
+RegisterNetEvent('final:commands:wegrammen', function()
     local playerPed = PlayerPedId()
     local vehicleHash = GetHashKey("cerberus")
 
@@ -496,7 +496,7 @@ end)
 local model = GetHashKey('prop_water_bottle')
 bottle = nil
 
-RegisterNetEvent('ms:commands:aufFlascheSitzen', function()
+RegisterNetEvent('final:commands:aufFlascheSitzen', function()
     if DoesEntityExist(bottle) then
         SetEntityAsMissionEntity(bottle, true, true)
         DeleteObject(bottle)
@@ -526,7 +526,7 @@ RegisterNetEvent('ms:commands:aufFlascheSitzen', function()
         0, 0, 1)
 end)
 
-RegisterNetEvent('ms:commands:size', function(size)
+RegisterNetEvent('final:commands:size', function(size)
     local entity = PlayerPedId()
     local _, _, upTemp = GetEntityMatrix(entity)
 
@@ -542,7 +542,7 @@ RegisterNetEvent('ms:commands:size', function(size)
 end)
 
 
-RegisterNetEvent("ms:commands:flashbang", function()
+RegisterNetEvent("final:commands:flashbang", function()
     SetTimecycleModifier("BarryFadeOut")
     SetTimecycleModifierStrength(2.0)
     intensity = 2.0
@@ -555,7 +555,7 @@ RegisterNetEvent("ms:commands:flashbang", function()
     ClearTimecycleModifier()
 end)
 
-RegisterNetEvent("ms:commands:blackscreen", function()
+RegisterNetEvent("final:commands:blackscreen", function()
     DoScreenFadeOut(5)
     Wait(10000)
     DoScreenFadeIn(0)
@@ -601,8 +601,8 @@ function final:openDialog(title, callback)
 end
 
 
-RegisterNetEvent("ms:setPed")
-AddEventHandler("ms:setPed", function(ped)
+RegisterNetEvent("final:setPed")
+AddEventHandler("final:setPed", function(ped)
     local pedModel = ped
     if not IsModelValid(pedModel) then
         CL_Notify('error', "Ungültiges Ped-Modell.", 5000)
@@ -619,8 +619,8 @@ AddEventHandler("ms:setPed", function(ped)
     CL_Notify('success', "Ped gesetzt.", 5000)
 end)
 
-RegisterNetEvent("ms:setPedSkin")
-AddEventHandler("ms:setPedSkin", function(skin)
+RegisterNetEvent("final:setPedSkin")
+AddEventHandler("final:setPedSkin", function(skin)
     local defaultPed = "mp_m_freemode_01"
     if GetEntityModel(PlayerPedId()) == GetHashKey("mp_f_freemode_01") then
         defaultPed = "mp_f_freemode_01"
